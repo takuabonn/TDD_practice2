@@ -10,6 +10,16 @@ export class NumberBox {
   }
 
   getMaxResultNumberWithMoving() {
+    let preliminaryMaxNumber = 0;
+    for (let i = 0; i < this.numberPanel.length; i++) {
+      const numberList = this.numberPanel[i];
+      for (let j = 0; j < numberList.length; j++) {
+        if (preliminaryMaxNumber < numberList[j]) {
+          preliminaryMaxNumber = numberList[j];
+        }
+      }
+    }
+    this.maxResultNumberWithMoving = preliminaryMaxNumber;
     return this.maxResultNumberWithMoving;
   }
 }
