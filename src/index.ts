@@ -17,7 +17,7 @@ export const maxNumberPositionArr = (numberPanel: numberPanel) => {
   return maxNumberPositionArr;
 };
 
-const numberArr: number[] = [];
+let numberArr: number = 0;
 
 const positionChangeDirectionPatterns = [
   [1, 0],
@@ -80,7 +80,9 @@ const roopFunc = (
 
     const plusedS = s + String(numberPanel[rowIndex][colIndex]);
     if (remaining_n == 0) {
-      numberArr.push(Number(plusedS));
+      if (Number(plusedS) > numberArr) {
+        numberArr = Number(plusedS);
+      }
       if (index === positionChangeDirectionPatterns.length - 1) return;
       continue;
     }
@@ -109,5 +111,5 @@ export const maxNumber = (
     const j = position[1];
     roopFunc(iniN - 1, numberPanel, i, j, s, [[i, j]]);
   });
-  return Math.max(...numberArr);
+  return numberArr;
 };

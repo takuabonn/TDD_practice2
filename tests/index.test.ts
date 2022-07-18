@@ -21,7 +21,7 @@ describe("number box", () => {
     const max_number_positionArr = [[1, 1]];
     expect(maxNumber(2, numberPanel, max_number_positionArr, "9")).toBe(96);
   });
-  test("初回の最大数の位置かsら数字パネルをn-1回移動する時に通るマスを順番に並べた時の最大数を返す", () => {
+  test("初回の最大数の位置かsら数字パネルを3回移動する時に通るマスを順番に並べた時の最大数を返す", () => {
     const numberPanel = [
       [1, 1, 6, 1],
       [1, 1, 1, 9],
@@ -29,6 +29,38 @@ describe("number box", () => {
       [1, 8, 1, 1],
     ];
     const max_number_positionArr = maxNumberPositionArr(numberPanel);
-    expect(maxNumber(4, numberPanel, max_number_positionArr, "9")).toBe(9786);
+    const [i, j] = max_number_positionArr[0];
+    expect(
+      maxNumber(
+        4,
+        numberPanel,
+        max_number_positionArr,
+        String(numberPanel[i][j])
+      )
+    ).toBe(9786);
+  });
+  test("初回の最大数の位置かsら数字パネルを9回移動する時に通るマスを順番に並べた時の最大数を返す", () => {
+    const numberPanel = [
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    ];
+    const max_number_positionArr = maxNumberPositionArr(numberPanel);
+    const [i, j] = max_number_positionArr[0];
+    expect(
+      maxNumber(
+        10,
+        numberPanel,
+        max_number_positionArr,
+        String(numberPanel[i][j])
+      )
+    ).toBe(9786);
   });
 });
