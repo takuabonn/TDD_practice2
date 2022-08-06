@@ -30,19 +30,26 @@ export class NumberBox {
   };
   constructor() {}
 
-  public moveMax(numberPanel: NumberPanel) {
+  public moveMax(numberPanel: NumberPanel, move_frequency: number) {
     let moveMaxNumberOnDirection = 0;
     for (let i = 0; i < numberPanel.length; i++) {
       for (let j = 0; j < numberPanel[i].length; j++) {
-        for (const [dr, dj] of this.positionChangeDirectionPatterns) {
-          const rowI = this.indexFunc(i + dr);
-          const colI = this.indexFunc(j + dj);
-          const afterMoveNumber = Number(
-            String(numberPanel[i][j]) + String(numberPanel[rowI][colI])
-          );
+        let cuNumber = numberPanel[i][j];
 
-          if (afterMoveNumber >= moveMaxNumberOnDirection) {
-            moveMaxNumberOnDirection = afterMoveNumber;
+        for (const [dr, dj] of this.positionChangeDirectionPatterns) {
+          let rowI = this.indexFunc(i);
+          let colI = this.indexFunc(j);
+
+          const arr = [];
+          arr.push(numberPanel[rowI][colI]);
+          for (let n = 0; n < move_frequency; n++) {
+            rowI = this.indexFunc(rowI + dr);
+            colI = this.indexFunc(colI + dj);
+            arr.push(numberPanel[rowI][colI]);
+          }
+          const numb = Number(arr.join(""));
+          if (numb >= moveMaxNumberOnDirection) {
+            moveMaxNumberOnDirection = numb;
           }
         }
       }
